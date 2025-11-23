@@ -630,8 +630,8 @@ body.loading {
 }
 
 .personnage-img {
-    width: 100%;
-    height: 100%;
+    width: 550px;
+    height: 550px;
     max-width: 550px;
     max-height: 550px;
     object-fit: contain;
@@ -639,7 +639,64 @@ body.loading {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.05);
+    transform: translate(-50%, -50%);
+}
+
+/* Taille spécifique pour le premier personnage (Sueño) */
+.personnage-img-1 {
+    width: 400px;
+    height: 400px;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+/* Taille spécifique pour le deuxième personnage (LilZay) - parfait comme il est */
+.personnage-img-2 {
+    width: 750px;
+    height: 750px;
+    max-width: 750px;
+    max-height: 750px;
+}
+
+/* Taille spécifique pour le troisième personnage (Esme) */
+.personnage-img-3 {
+    width: 550px;
+    height: 550px;
+    max-width: 550px;
+    max-height: 550px;
+}
+
+/* Taille spécifique pour le quatrième personnage (Koma) */
+.personnage-img-4 {
+    width: 450px;
+    height: 450px;
+    max-width: 450px;
+    max-height: 450px;
+    transform: translate(-50%, -45%);
+}
+
+/* Taille spécifique pour le cinquième personnage (Morana) */
+.personnage-img-5 {
+    width: 500px;
+    height: 500px;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+/* Taille spécifique pour le sixième personnage (Risky) */
+.personnage-img-6 {
+    width: 750px;
+    height: 750px;
+    max-width: 750px;
+    max-height: 750px;
+}
+
+/* Taille spécifique pour le septième personnage (Sleek) */
+.personnage-img-7 {
+    width: 500px;
+    height: 500px;
+    max-width: 500px;
+    max-height: 500px;
 }
 
 .personnage-image:has(.personnage-img[src]:not([src=""])) .personnage-img {
