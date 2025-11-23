@@ -1,0 +1,1168 @@
+/* Reset et Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple-dark: #4a148c;
+    --purple-main: #6a1b9a;
+    --purple-light: #9c27b0;
+    --purple-accent: #ba68c8;
+    --black: #0a0a0a;
+    --dark-gray: #1a1a1a;
+    --gray: #2a2a2a;
+    --light-gray: #cccccc;
+    --white: #ffffff;
+    --gold: #ffd700;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--black);
+    color: var(--light-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.loader-logo {
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.8))
+            drop-shadow(0 0 40px rgba(106, 27, 154, 0.6));
+}
+
+.loader-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem;
+    color: var(--purple-light);
+    text-shadow: 
+        2px 2px 0 var(--black),
+        0 0 20px rgba(156, 39, 176, 0.8),
+        0 0 40px rgba(106, 27, 154, 0.6);
+    letter-spacing: 4px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 
+            2px 2px 0 var(--black),
+            0 0 20px rgba(156, 39, 176, 0.8),
+            0 0 40px rgba(106, 27, 154, 0.6);
+    }
+    50% {
+        opacity: 0.7;
+        text-shadow: 
+            2px 2px 0 var(--black),
+            0 0 30px rgba(156, 39, 176, 1),
+            0 0 60px rgba(106, 27, 154, 0.8);
+    }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 2px solid var(--purple-main);
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.3);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    color: var(--purple-light);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                 0 0 10px rgba(156, 39, 176, 0.5);
+    letter-spacing: 3px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--light-gray);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--purple-light);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--purple-light);
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.8);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--black) 0%, var(--purple-dark) 50%, var(--black) 100%);
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(106, 27, 154, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(156, 39, 176, 0.2) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: 'ESB';
+    position: absolute;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 25rem;
+    color: rgba(106, 27, 154, 0.05);
+    z-index: 0;
+    letter-spacing: 20px;
+    transform: rotate(-15deg);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(106, 27, 154, 0.03) 2px,
+            rgba(106, 27, 154, 0.03) 4px
+        );
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-logo {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-image {
+    max-width: 200px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.8))
+            drop-shadow(0 0 40px rgba(106, 27, 154, 0.6));
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 30px rgba(156, 39, 176, 1))
+            drop-shadow(0 0 60px rgba(106, 27, 154, 0.8));
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 6rem;
+    color: var(--white);
+    text-shadow: 
+        3px 3px 0 var(--purple-dark),
+        6px 6px 0 var(--purple-main),
+        0 0 30px rgba(156, 39, 176, 0.8),
+        0 0 60px rgba(106, 27, 154, 0.6);
+    letter-spacing: 8px;
+    margin-bottom: 1rem;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
+    color: var(--purple-light);
+    text-shadow: 
+        2px 2px 0 var(--black),
+        0 0 20px rgba(156, 39, 176, 0.6);
+    letter-spacing: 5px;
+    margin-bottom: 1rem;
+}
+
+.hero-tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            3px 3px 0 var(--purple-dark),
+            6px 6px 0 var(--purple-main),
+            0 0 30px rgba(156, 39, 176, 0.8),
+            0 0 60px rgba(106, 27, 154, 0.6);
+    }
+    to {
+        text-shadow: 
+            3px 3px 0 var(--purple-dark),
+            6px 6px 0 var(--purple-main),
+            0 0 40px rgba(156, 39, 176, 1),
+            0 0 80px rgba(106, 27, 154, 0.8);
+    }
+}
+
+/* Sections */
+.section {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.section:nth-child(even) {
+    background: var(--dark-gray);
+}
+
+/* Background avec armes à feu pour toutes les sections */
+.section {
+    background: var(--dark-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        /* Pistolets réalistes style Glock/Beretta */
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="450" height="450" viewBox="0 0 450 450"><defs><style>.gun{fill:none;stroke:rgba(106,27,154,0.28);stroke-width:2.8;opacity:0.42;stroke-linecap:round;stroke-linejoin:round;}.gun2{fill:none;stroke:rgba(156,39,176,0.22);stroke-width:2.3;opacity:0.38;stroke-linecap:round;stroke-linejoin:round;}</style></defs><g class="gun" transform="translate(60,130)"><path d="M0 28 L8 28 L10 26 L12 28 L22 28 L24 26 L26 28 L38 28 L40 26 L42 28 L55 28 L58 32 L55 36 L0 36 Z"/><path d="M0 36 L55 36 L58 40 L55 44 L0 44 Z"/><path d="M0 44 L55 44 L58 48 L55 52 L0 52 Z"/><path d="M0 52 L55 52 L58 56 L55 60 L0 60 Z"/><rect x="28" y="28" width="6" height="8" fill="rgba(106,27,154,0.32)" stroke="none"/><circle cx="31" cy="32" r="2.2" fill="rgba(106,27,154,0.35)" stroke="none"/><path d="M8 28 L10 20 L12 28"/><path d="M50 28 L52 24 L54 28"/><path d="M0 28 L3 24 L0 20 L-3 24 Z" fill="rgba(106,27,154,0.3)"/></g><g class="gun2" transform="translate(280,110) rotate(22)"><path d="M0 24 L7 24 L9 22 L11 24 L20 24 L22 22 L24 24 L34 24 L36 22 L38 24 L50 24 L53 28 L50 32 L0 32 Z"/><path d="M0 32 L50 32 L53 36 L50 40 L0 40 Z"/><path d="M0 40 L50 40 L53 44 L50 48 L0 48 Z"/><path d="M0 48 L50 48 L53 52 L50 56 L0 56 Z"/><rect x="25" y="24" width="5" height="7" fill="rgba(156,39,176,0.28)" stroke="none"/><circle cx="27.5" cy="27.5" r="2" fill="rgba(156,39,176,0.3)" stroke="none"/><path d="M7 24 L9 17 L11 24"/><path d="M45 24 L47 20 L49 24"/><path d="M0 24 L3 20 L0 16 L-3 20 Z" fill="rgba(156,39,176,0.25)"/></g><g class="gun" transform="translate(170,300) rotate(-18)"><path d="M0 26 L8 26 L10 24 L12 26 L21 26 L23 24 L25 26 L35 26 L37 24 L39 26 L52 26 L55 30 L52 34 L0 34 Z"/><path d="M0 34 L52 34 L55 38 L52 42 L0 42 Z"/><path d="M0 42 L52 42 L55 46 L52 50 L0 50 Z"/><path d="M0 50 L52 50 L55 54 L52 58 L0 58 Z"/><rect x="26" y="26" width="6" height="8" fill="rgba(106,27,154,0.32)" stroke="none"/><circle cx="29" cy="30" r="2.2" fill="rgba(106,27,154,0.35)" stroke="none"/><path d="M8 26 L10 19 L12 26"/><path d="M47 26 L49 22 L51 26"/><path d="M0 26 L3 22 L0 18 L-3 22 Z" fill="rgba(106,27,154,0.3)"/></g><g class="gun2" transform="translate(350,270) rotate(38)"><path d="M0 22 L6 22 L8 20 L10 22 L18 22 L20 20 L22 22 L30 22 L32 20 L34 22 L45 22 L48 26 L45 30 L0 30 Z"/><path d="M0 30 L45 30 L48 34 L45 38 L0 38 Z"/><path d="M0 38 L45 38 L48 42 L45 46 L0 46 Z"/><path d="M0 46 L45 46 L48 50 L45 54 L0 54 Z"/><rect x="22" y="22" width="5" height="7" fill="rgba(156,39,176,0.28)" stroke="none"/><circle cx="24.5" cy="25.5" r="2" fill="rgba(156,39,176,0.3)" stroke="none"/><path d="M6 22 L8 15 L10 22"/><path d="M40 22 L42 18 L44 22"/><path d="M0 22 L2.5 18 L0 14 L-2.5 18 Z" fill="rgba(156,39,176,0.25)"/></g></svg>'),
+        /* AK-47 réalistes avec crosse et détails */
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="550" height="550" viewBox="0 0 550 550"><defs><style>.ak{fill:none;stroke:rgba(106,27,154,0.24);stroke-width:3.2;opacity:0.38;stroke-linecap:round;stroke-linejoin:round;}.ak2{fill:none;stroke:rgba(156,39,176,0.2);stroke-width:2.7;opacity:0.32;stroke-linecap:round;stroke-linejoin:round;}</style></defs><g class="ak" transform="translate(90,90)"><path d="M0 18 L30 18 L33 15 L35 18 L55 18 L58 15 L60 18 L85 18 L90 23 L85 28 L0 28 Z"/><path d="M0 28 L85 28 L90 33 L85 38 L0 38 Z"/><path d="M0 38 L85 38 L90 43 L85 48 L0 48 Z"/><path d="M0 48 L85 48 L90 53 L85 58 L0 58 Z"/><path d="M0 58 L85 58 L90 63 L85 68 L0 68 Z"/><path d="M80 18 L83 10 L85 18" stroke-width="3"/><rect x="40" y="18" width="15" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="60" y="28" width="12" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="25" y="38" width="18" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="45" y="48" width="14" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><circle cx="47" cy="23" r="3.5" fill="rgba(106,27,154,0.32)" stroke="none"/><path d="M0 18 L6 12 L0 6 L-6 12 Z" fill="rgba(106,27,154,0.28)"/><path d="M0 68 L8 75 L0 82 L-8 75 Z" fill="rgba(106,27,154,0.28)"/></g><g class="ak2" transform="translate(320,70) rotate(28)"><path d="M0 15 L27 15 L30 12 L32 15 L50 15 L53 12 L55 15 L78 15 L83 20 L78 25 L0 25 Z"/><path d="M0 25 L78 25 L83 30 L78 35 L0 35 Z"/><path d="M0 35 L78 35 L83 40 L78 45 L0 45 Z"/><path d="M0 45 L78 45 L83 50 L78 55 L0 55 Z"/><path d="M0 55 L78 55 L83 60 L78 65 L0 65 Z"/><path d="M73 15 L76 7 L78 15" stroke-width="3"/><rect x="36" y="15" width="13" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="54" y="25" width="11" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="22" y="35" width="16" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="40" y="45" width="13" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><circle cx="42" cy="19.5" r="3" fill="rgba(156,39,176,0.28)" stroke="none"/><path d="M0 15 L5 9 L0 3 L-5 9 Z" fill="rgba(156,39,176,0.24)"/><path d="M0 65 L7 72 L0 79 L-7 72 Z" fill="rgba(156,39,176,0.24)"/></g><g class="ak" transform="translate(50,350) rotate(-22)"><path d="M0 16 L28 16 L31 13 L33 16 L52 16 L55 13 L57 16 L81 16 L86 21 L81 26 L0 26 Z"/><path d="M0 26 L81 26 L86 31 L81 36 L0 36 Z"/><path d="M0 36 L81 36 L86 41 L81 46 L0 46 Z"/><path d="M0 46 L81 46 L86 51 L81 56 L0 56 Z"/><path d="M0 56 L81 56 L86 61 L81 66 L0 66 Z"/><path d="M76 16 L79 8 L81 16" stroke-width="3"/><rect x="38" y="16" width="14" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="57" y="26" width="12" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="23" y="36" width="17" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><rect x="42" y="46" width="13" height="10" fill="rgba(106,27,154,0.28)" stroke="none"/><circle cx="45" cy="21" r="3.5" fill="rgba(106,27,154,0.32)" stroke="none"/><path d="M0 16 L6 10 L0 4 L-6 10 Z" fill="rgba(106,27,154,0.28)"/><path d="M0 66 L8 73 L0 80 L-8 73 Z" fill="rgba(106,27,154,0.28)"/></g><g class="ak2" transform="translate(400,320) rotate(42)"><path d="M0 13 L25 13 L28 10 L30 13 L47 13 L50 10 L52 13 L73 13 L78 18 L73 23 L0 23 Z"/><path d="M0 23 L73 23 L78 28 L73 33 L0 33 Z"/><path d="M0 33 L73 33 L78 38 L73 43 L0 43 Z"/><path d="M0 43 L73 43 L78 48 L73 53 L0 53 Z"/><path d="M0 53 L73 53 L78 58 L73 63 L0 63 Z"/><path d="M68 13 L71 5 L73 13" stroke-width="3"/><rect x="33" y="13" width="12" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="50" y="23" width="10" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="20" y="33" width="15" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><rect x="37" y="43" width="12" height="9" fill="rgba(156,39,176,0.24)" stroke="none"/><circle cx="39" cy="17.5" r="3" fill="rgba(156,39,176,0.28)" stroke="none"/><path d="M0 13 L5 7 L0 1 L-5 7 Z" fill="rgba(156,39,176,0.24)"/><path d="M0 63 L7 70 L0 77 L-7 70 Z" fill="rgba(156,39,176,0.24)"/></g></svg>');
+    background-size: 400px 400px, 500px 500px;
+    background-position: 0 0, 150px 80px;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    color: var(--purple-light);
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 
+        2px 2px 0 var(--black),
+        0 0 20px rgba(156, 39, 176, 0.6);
+    letter-spacing: 5px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--purple-light), transparent);
+}
+
+.content-box {
+    background: rgba(26, 26, 26, 0.8);
+    padding: 2.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--purple-main);
+    box-shadow: 
+        0 0 20px rgba(106, 27, 154, 0.3),
+        inset 0 0 20px rgba(106, 27, 154, 0.1);
+}
+
+.section-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--light-gray);
+}
+
+/* Styles pour l'histoire */
+.histoire-chapitre {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(106, 27, 154, 0.3);
+}
+
+.histoire-chapitre:last-child {
+    border-bottom: none;
+}
+
+.chapitre-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    color: var(--purple-light);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+    position: relative;
+    padding-left: 1rem;
+    border-left: 4px solid var(--purple-main);
+}
+
+.citation {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    color: var(--purple-light);
+    font-style: italic;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(106, 27, 154, 0.15);
+    border-left: 4px solid var(--purple-light);
+    border-right: 4px solid var(--purple-light);
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
+    letter-spacing: 1px;
+}
+
+.final-citation {
+    font-size: 1.4rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    background: rgba(106, 27, 154, 0.2);
+    border: 2px solid var(--purple-main);
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.4);
+}
+
+.clique-section {
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(106, 27, 154, 0.3);
+}
+
+.clique-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: var(--purple-accent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(156, 39, 176, 0.5);
+}
+
+.code-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+}
+
+.code-list li {
+    font-size: 1.2rem;
+    color: var(--light-gray);
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.8rem;
+    background: rgba(106, 27, 154, 0.1);
+    border-left: 3px solid var(--purple-light);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.code-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 1rem;
+    color: var(--purple-light);
+    font-size: 1.5rem;
+    text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
+}
+
+/* Section Personnages */
+.personnages-section {
+    background: linear-gradient(180deg, var(--black) 0%, var(--dark-gray) 100%);
+    overflow: hidden;
+}
+
+.personnages-carousel-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 3rem auto;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 3px solid var(--purple-main);
+    box-shadow: 
+        0 0 40px rgba(106, 27, 154, 0.5),
+        inset 0 0 30px rgba(106, 27, 154, 0.1);
+    background: var(--dark-gray);
+}
+
+.personnages-carousel {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    will-change: transform;
+}
+
+.personnage-card {
+    height: 600px;
+    min-height: 600px;
+    width: 100%;
+    flex-shrink: 0;
+    background: var(--gray);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--purple-main);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(106, 27, 154, 0.2);
+    transition: all 0.4s ease;
+}
+
+.personnage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(106, 27, 154, 0.1) 0%,
+        transparent 50%,
+        rgba(156, 39, 176, 0.1) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.personnage-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background: var(--dark-gray);
+    border-bottom: 3px solid var(--purple-light);
+}
+
+.graphiti-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 15px,
+            rgba(106, 27, 154, 0.15) 15px,
+            rgba(106, 27, 154, 0.15) 30px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 20px,
+            rgba(156, 39, 176, 0.1) 20px,
+            rgba(156, 39, 176, 0.1) 40px
+        );
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.personnage-number {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4rem;
+    color: rgba(156, 39, 176, 0.3);
+    z-index: 3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 5px;
+}
+
+.personnage-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--purple-main);
+    padding: 0.5rem;
+    border-radius: 5px;
+    z-index: 3;
+    box-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+    border: 2px solid var(--purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.personnage-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-main) 50%, var(--purple-light) 100%);
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.personnage-img {
+    width: 100%;
+    height: 100%;
+    max-width: 550px;
+    max-height: 550px;
+    object-fit: contain;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.personnage-image:has(.personnage-img[src]:not([src=""])) .personnage-img {
+    display: block;
+}
+
+.personnage-image:has(.personnage-img[src]:not([src=""])) .placeholder-text {
+    display: none;
+}
+
+.placeholder-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.personnage-info {
+    padding: 2rem;
+    background: linear-gradient(180deg, var(--gray) 0%, var(--dark-gray) 100%);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.personnage-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    color: var(--purple-light);
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        0 0 10px rgba(156, 39, 176, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.personnage-role {
+    font-size: 1.1rem;
+    color: var(--light-gray);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.personnage-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--purple-main);
+}
+
+.stat-item {
+    background: rgba(106, 27, 154, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    color: var(--purple-light);
+    border: 1px solid var(--purple-main);
+    text-shadow: 0 0 5px rgba(156, 39, 176, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(156, 39, 176, 0.3);
+    border: 2px solid var(--purple-main);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: var(--purple-light);
+    box-shadow: 0 0 15px rgba(156, 39, 176, 0.8);
+    transform: scale(1.3);
+}
+
+.indicator:hover {
+    background: var(--purple-accent);
+    box-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
+}
+
+.carousel-hint {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(156, 39, 176, 0.8);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.5px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-style: italic;
+    text-shadow: 0 0 8px rgba(156, 39, 176, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+/* Section Objectif */
+.objectif-categorie {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(106, 27, 154, 0.3);
+}
+
+.objectif-categorie:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.objectif-categorie-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    color: var(--purple-light);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+    position: relative;
+    padding-left: 1rem;
+    border-left: 4px solid var(--purple-main);
+}
+
+.objectif-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.objectif-list li {
+    font-size: 1.1rem;
+    color: var(--light-gray);
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.8rem;
+    background: rgba(106, 27, 154, 0.1);
+    border-left: 3px solid var(--purple-light);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.objectif-list li:hover {
+    background: rgba(106, 27, 154, 0.2);
+    border-left-color: var(--purple-accent);
+    transform: translateX(5px);
+}
+
+.objectif-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 1rem;
+    color: var(--purple-light);
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
+}
+
+/* Section Style */
+.style-section {
+    background: linear-gradient(180deg, var(--dark-gray) 0%, var(--black) 100%);
+}
+
+.style-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.style-item {
+    background: var(--gray);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--purple-main);
+    transition: all 0.3s ease;
+    text-align: center;
+    overflow: hidden;
+}
+
+.style-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(156, 39, 176, 0.5);
+    border-color: var(--purple-light);
+}
+
+.style-item h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: var(--purple-light);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+}
+
+.style-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--dark-gray);
+    border: 2px solid var(--purple-main);
+}
+
+.style-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    transition: transform 0.3s ease;
+}
+
+.style-image-wrapper:hover .style-image {
+    transform: scale(1.1);
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-main) 100%);
+}
+
+/* Les images seront affichées via JavaScript */
+
+/* Section Civile */
+.civile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.civile-card {
+    background: var(--gray);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--purple-main);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.civile-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple-light);
+    box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+}
+
+.civile-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: var(--purple-light);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.civile-card p {
+    color: var(--light-gray);
+    line-height: 1.6;
+}
+
+/* Section Messe */
+.messe-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.6);
+    border-radius: 10px;
+    border: 2px solid var(--purple-main);
+    box-shadow: 0 0 20px rgba(106, 27, 154, 0.3);
+}
+
+.messe-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    color: var(--purple-light);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+    position: relative;
+    padding-left: 1rem;
+    border-left: 4px solid var(--purple-main);
+}
+
+.messe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(106, 27, 154, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid var(--purple-light);
+}
+
+.messe-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.messe-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    color: var(--purple-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.messe-value {
+    font-size: 1rem;
+    color: var(--light-gray);
+    font-family: 'Roboto', sans-serif;
+}
+
+.messe-description,
+.messe-objectifs {
+    margin-top: 2rem;
+}
+
+.messe-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    color: var(--purple-accent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.messe-objectifs-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+.messe-objectifs-list li {
+    font-size: 1.1rem;
+    color: var(--light-gray);
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.8rem;
+    background: rgba(106, 27, 154, 0.1);
+    border-left: 3px solid var(--purple-light);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.messe-objectifs-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 1rem;
+    color: var(--purple-light);
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
+}
+
+/* Footer */
+.footer {
+    background: var(--black);
+    border-top: 1px solid rgba(106, 27, 154, 0.3);
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.footer-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(204, 204, 204, 0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .logo-image {
+        max-width: 150px;
+    }
+
+    .loader-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .loader-text {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .personnages-carousel-wrapper {
+        max-width: 100%;
+        height: 500px;
+        margin: 2rem 1rem;
+    }
+
+    .personnage-card {
+        min-height: 500px;
+    }
+
+    .personnage-image-wrapper {
+        height: 300px;
+    }
+
+    .personnage-name {
+        font-size: 1.5rem;
+    }
+
+    .personnage-number {
+        font-size: 3rem;
+    }
+
+    .badge-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-indicators {
+        right: 10px;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .objectif-categorie-title {
+        font-size: 1.5rem;
+    }
+
+    .objectif-list li {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+        padding-left: 2.2rem;
+    }
+
+    .style-content,
+    .civile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .messe-section {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .messe-title {
+        font-size: 1.6rem;
+    }
+
+    .messe-info {
+        padding: 1rem;
+    }
+
+    .messe-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .messe-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .messe-objectifs-list li {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        padding-left: 2.2rem;
+    }
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
