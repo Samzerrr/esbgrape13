@@ -1,3 +1,4 @@
+// JavaScript by sambo
 // Gestion du loader
 document.body.classList.add('loading');
 

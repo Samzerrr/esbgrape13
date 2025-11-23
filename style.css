@@ -1,3 +1,4 @@
+/* CSS by sambo */
 /* Reset et Variables */
 * {
     margin: 0;
@@ -30,7 +31,7 @@ body.loading {
     overflow: hidden;
 }
 
-/* Loader */
+/* Loader by sambo */
 .loader {
     position: fixed;
     top: 0;
@@ -104,7 +105,7 @@ body.loading {
     }
 }
 
-/* Navigation */
+/* Navigation by sambo */
 .navbar {
     position: fixed;
     top: 0;
@@ -484,7 +485,7 @@ body.loading {
     text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
 }
 
-/* Section Personnages */
+/* Section Personnages by sambo */
 .personnages-section {
     background: linear-gradient(180deg, var(--black) 0%, var(--dark-gray) 100%);
     overflow: hidden;
@@ -761,7 +762,7 @@ body.loading {
     z-index: 2;
 }
 
-/* Section Objectif */
+/* Section Objectif by sambo */
 .objectif-categorie {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
@@ -821,7 +822,7 @@ body.loading {
     text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
 }
 
-/* Section Style */
+/* Section Style by sambo */
 .style-section {
     background: linear-gradient(180deg, var(--dark-gray) 0%, var(--black) 100%);
 }
@@ -896,7 +897,7 @@ body.loading {
 
 /* Les images seront affichées via JavaScript */
 
-/* Section Civile */
+/* Section Civile by sambo */
 .civile-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -932,7 +933,7 @@ body.loading {
     line-height: 1.6;
 }
 
-/* Section Messe */
+/* Section Messe by sambo */
 .messe-section {
     margin-top: 3rem;
     padding: 2rem;
@@ -1030,7 +1031,7 @@ body.loading {
     text-shadow: 0 0 8px rgba(156, 39, 176, 0.6);
 }
 
-/* Footer */
+/* Footer by sambo */
 .footer {
     background: var(--black);
     border-top: 1px solid rgba(106, 27, 154, 0.3);
