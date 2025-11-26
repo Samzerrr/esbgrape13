@@ -683,7 +683,7 @@ body.loading {
     max-height: 500px;
 }
 
-/* Taille spécifique pour le sixième personnage (Risky) */
+/* Taille spécifique pour le sixième personnage (Sleek) */
 .personnage-img-6 {
     width: 750px;
     height: 750px;
@@ -706,6 +706,23 @@ body.loading {
     max-width: 500px;
     max-height: 500px;
     transform: translate(-50%, -40%);
+}
+
+/* Taille spécifique pour le neuvième personnage (Risky) */
+.personnage-img-9 {
+    width: 650px;
+    height: 650px;
+    max-width: 650px;
+    max-height: 650px;
+    transform: translate(-50%, -25%);
+}
+
+/* Taille spécifique pour le dixième personnage (Drippy) */
+.personnage-img-10 {
+    width: 650px;
+    height: 650px;
+    max-width: 650px;
+    max-height: 650px;
 }
 
 .personnage-image:has(.personnage-img[src]:not([src=""])) .personnage-img {
