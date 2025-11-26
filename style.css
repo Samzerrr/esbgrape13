@@ -652,10 +652,10 @@ body.loading {
 
 /* Taille spécifique pour le deuxième personnage (LilZay) - parfait comme il est */
 .personnage-img-2 {
-    width: 750px;
-    height: 750px;
-    max-width: 750px;
-    max-height: 750px;
+    width: 850px;
+    height: 850px;
+    max-width: 850px;
+    max-height: 850px;
 }
 
 /* Taille spécifique pour le troisième personnage (Esme) */
@@ -697,6 +697,15 @@ body.loading {
     height: 500px;
     max-width: 500px;
     max-height: 500px;
+}
+
+/* Taille et position spécifique pour le huitième personnage (Nazzo) */
+.personnage-img-8 {
+    width: 500px;
+    height: 500px;
+    max-width: 500px;
+    max-height: 500px;
+    transform: translate(-50%, -40%);
 }
 
 .personnage-image:has(.personnage-img[src]:not([src=""])) .personnage-img {
