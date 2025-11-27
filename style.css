@@ -725,6 +725,14 @@ body.loading {
     max-height: 650px;
 }
 
+.personnage-img-11 {
+    transform: translate(-50%, -40%);
+}
+
+.personnage-img-12 {
+    transform: translate(-50%, -30%);
+}
+
 .personnage-image:has(.personnage-img[src]:not([src=""])) .personnage-img {
     display: block;
 }
@@ -1459,4 +1467,3 @@ body.loading {
 html {
     scroll-behavior: smooth;
 }
-
